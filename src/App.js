@@ -8,7 +8,7 @@ function App() {
   const [path] = useState(window.location.pathname)
   const [socket, setSocket] = useState(null)
   useEffect(() => {
-    const newSocket = io("https://testhelper-server.herokuapp.com")
+    const newSocket = io("https://testhelper-server.herokuapp.com", {transports: ['websocket']})
     setSocket(newSocket)
     return () => newSocket.close()
   }, [setSocket])
