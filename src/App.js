@@ -8,7 +8,7 @@ function App() {
   const [path] = useState(window.location.pathname)
   const [socket, setSocket] = useState(null)
   useEffect(() => {
-    const newSocket = io("http://localhost:5000")
+    const newSocket = io("https://testhelper-server.herokuapp.com")
     setSocket(newSocket)
     return () => newSocket.close()
   }, [setSocket])
@@ -20,7 +20,7 @@ function App() {
   }
   return (
     <div className="App">
-      {path === "/admin"
+      {path === "/godmode"
         ? <WaitingForSocket><Admin socket={socket} /></WaitingForSocket>
         : <WaitingForSocket><Test socket={socket} /></WaitingForSocket>}
     </div>
