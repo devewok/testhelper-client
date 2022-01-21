@@ -29,7 +29,7 @@ const Question = ({data, handleToVote}) => {
   return (
 
     <div id="question">
-      {data[data.id]["question"]}
+      <h3>{data.id + 1 + ". "}{data[data.id]["question"]}</h3>
       {Object.entries(data[data.id]["options"]).map(([key, value]) =>
         <Option key={key} handleToVote={handleAnswer} isAnswered={isAnswered} quid={data.id} opid={key} data={value}></Option>
       )}
@@ -49,13 +49,12 @@ const Test = ({socket}) => {
       socket.off("newquestion", callbackNewQuestion)
     }
   })
-
   const handleCode = (event) => {
     event.preventDefault()
+    event.target.disabled = true
     const value = document.getElementById("code").value
     setCode(value)
     socket.emit("loaddata", value)
-
   }
 
   const handleToVote = (quid, opid, vote) => {

@@ -8,7 +8,8 @@ function App() {
   const [path] = useState(window.location.pathname)
   const [socket, setSocket] = useState(null)
   useEffect(() => {
-    const newSocket = io("https://testhelper-server.herokuapp.com", {transports: ['websocket'], path: "/api/"})
+    const newSocket = io("https://testhelper-server.herokuapp.com/", {transports: ['websocket'], path: "/api/"})
+    // const newSocket = io("http://localhost:5000", {transports: ['websocket'], path: "/api/"})
     setSocket(newSocket)
     return () => newSocket.close()
   }, [setSocket])
